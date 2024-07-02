@@ -1,0 +1,160 @@
+$accent-color: #1e3e47;
+$gray-color: #505354;
+
+:root {
+  font-size: 16px;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+main {
+  // padding-top: 1rem;
+  overflow-y: auto;
+}
+
+.btn-without-text {
+  padding: 5px;
+}
+
+.btn-without-text>svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+aside {
+  background-color: $accent-color;
+  min-width: 200px;
+  
+  hr {
+    color: white;
+  }
+
+  .navbar-nav .nav-link {
+    color: white;
+    
+    &.active, &:hover, &:focus {
+      background-color: white;
+      color: $accent-color;
+    }
+  }
+}
+
+.profile-img, .participant-profile-img .avatar {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-img-small, nav .avatar {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-img-big {
+  width: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.avatar {
+  background-color: $accent-color;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  max-width: 700px;
+}
+
+a.disabled {
+  pointer-events: none;
+}
+
+option:not(#select-status>option):first-child {
+  font-style: italic;
+}
+
+.clean-btn {
+  border: none;
+  background-color: transparent;
+}
+
+.btn-done {
+  border: none;
+  padding: 0;
+  font-size: 2rem;
+  background-color: transparent;
+  flex-grow: 1;
+}
+
+.text-gray {
+  color: lightgrey;
+}
+
+.bg-accent {
+  background-color: $accent-color;
+  color: white;
+}
+
+.global-spinner-wrapper {
+  background-color: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.participants-choice {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding-left: 20px;
+}
+
+#edit-task-form label, #edit-project-form label {
+  font-weight: bold;
+  margin: 0;
+}
+
+.login-container {
+  background-color: $accent-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-wrapper {
+  background-color: white;
+  max-width: 500px;
+}
+
+.login-wrapper h1{
+  text-align: center;
+}
+
+.login-wrapper p{
+  font-size: 0.9em;
+}
+
+tr.verical-middle-row>td {
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .nav-buttons button {
+    background-color: $accent-color;
+
+    &:hover {
+      border: 1px solid $accent-color;
+    }
+  }
+}
