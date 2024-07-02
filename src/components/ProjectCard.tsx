@@ -18,6 +18,7 @@ interface Project {
 }
 
 const ProjectCard = ({project}: {project: Project}) => {
+
   return (
     <Col>
     <Card>
@@ -27,7 +28,7 @@ const ProjectCard = ({project}: {project: Project}) => {
         <Card.Text><b>Deadline:</b> {project.deadline?fromISODateToLocale(project.deadline):'no deadline'}</Card.Text>
         <Card.Text><b>Status</b>: {project.status}</Card.Text>
         <Card.Link as={Link} to={'/projects/'+project._id}>Details</Card.Link>
-        {project.link?<Card.Link href={project.link}>Link</Card.Link>:<Card.Link href='#'>Link</Card.Link>}
+        {project.link?<Card.Link href={project.link}>Link</Card.Link>:null}
       </Card.Body>
     </Card>
     </Col>

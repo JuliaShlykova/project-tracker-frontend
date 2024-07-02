@@ -41,6 +41,11 @@ const ModalProjectEdit = ({project, showEdit, setShowEdit}) => {
           name="deadline" 
         />
       </Form.Group>
+      <Form.Group controlId='link' name="link" label="Link">
+        <Form.Label>Link:</Form.Label>
+        <Form.Control name="link" type="url" placeholder="https://example.com" pattern="https://.*" />
+        <Form.Text>Provide link only with "https" protocol</Form.Text>
+      </Form.Group> 
       <Form.Group controlId="select-status">
         <Form.Label>Status:</Form.Label>
         <Form.Select name="status" defaultValue={project.status} required>

@@ -76,12 +76,16 @@ const Project = () => {
         </ListGroup.Item>
         <ListGroup.Item><b>Deadline: </b>{project.deadline?fromISODateToLocale(project.deadline):'no deadline'}</ListGroup.Item>
         <ListGroup.Item><b>Status: </b>{project.status}</ListGroup.Item>
-        <ListGroup.Item>
-          <b>Paticipants: </b>
-          <Stack gap={2} direction="horizontal" className='flex-wrap'>
-            {project.participants.map(participant => <ParticipantImg key={participant._id} participant={participant} />)}
-          </Stack>
-        </ListGroup.Item>
+        {project.link?<ListGroup.Item><b>Link: </b><a href={project.link}>{project.link}</a></ListGroup.Item>:null}
+        {(project.participants.length>0)
+          ?<ListGroup.Item>
+              <b>Paticipants: </b>
+              <Stack gap={2} direction="horizontal" className='flex-wrap'>
+                {project.participants.map(participant => <ParticipantImg key={participant._id} participant={participant} />)}
+              </Stack>
+            </ListGroup.Item>
+          :null
+        }
       </ListGroup>
       <hr />
       <h2>Tasks and issues</h2>

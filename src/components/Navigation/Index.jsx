@@ -11,11 +11,10 @@ import { CgMenuLeftAlt } from "react-icons/cg";
 import Avatar from '../Avatar.tsx';
 import ModalChangeNickname from './ModalChangeNickname.jsx';
 import ModalDownloadImg from './ModalDownloadImg.jsx';
+import { signout } from '../../api/auth.js';
 
-const handlelogout = () => {
-  clearStorage(); 
-  removeTokenCookie();
-  window.location.href = '/';
+const handlelogout = async() => {
+  await signout();
 }
 
 function Navigation() {

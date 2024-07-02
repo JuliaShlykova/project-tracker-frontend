@@ -5,12 +5,13 @@ import removeTokenCookie from '../utils/removeCookies';
 export const signout = async() => {
   try {
     removeTokenCookie();
-    await api.post('/auth/logout', {});
     clearStorage();
-    window.location.href = '/login';
+    await api.post('/auth/logout', {});
     return;
   } catch(err) {
     console.log(err);
+  } finally {
+    window.location.href = '/';
   }
 };
 

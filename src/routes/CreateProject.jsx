@@ -39,8 +39,8 @@ const CreateProject = () => {
       <FloatingLabel controlId="deadline" label="Deadline">
         <Form.Control name="deadline" type="datetime-local" placeholder="DD/MM/YYYY" />
       </FloatingLabel>
-      <FloatingLabel controlId='link' name="link" label="Link">
-        <Form.Control type="url" placeholder="https://example.com" pattern="https://.*" />
+      <FloatingLabel controlId='link' label="Link">
+        <Form.Control type="url" name="link" placeholder="https://example.com" pattern="https://.*" />
         <Form.Text>Provide link only with "https" protocol</Form.Text>
       </FloatingLabel>   
         <fieldset>
