@@ -127,6 +127,8 @@ option:not(#select-status>option):first-child {
 
 .login-container {
   background-color: $accent-color;
+  background-image: url("./assets/landing/background.jpg");
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -177,13 +179,14 @@ tr.verical-middle-row>td {
 
   main {
     width: 100vw;
+    background-color: $accent-color;
     overflow: hidden;
     height: 100vh;
     position: relative;
   }  
 
   .bg-img {
-    width: 2000px;
+    width: 1800px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
