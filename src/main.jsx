@@ -8,10 +8,10 @@ import { clearStorage, getToken, getUser } from './services/localStorage.js';
 import Login from './routes/Login.jsx';
 import removeTokenCookie from './utils/removeCookies.js';
 import Dashboard from './routes/Dashboard.jsx';
-import { allProjectsLoader, allTasksdLoader, createProjectLoader, createTaskLoader, dashboardLoader, editTaskLoader, projectLoader, projectsLoader } from './loaders.jsx';
+import { allProjectsLoader, allTasksdLoader, createProjectLoader, createTaskLoader, dashboardLoader, editTaskLoader, inviteUsersLoader, projectLoader, projectsLoader } from './loaders.jsx';
 import Project from './routes/Project.jsx';
 import Projects from './routes/Projects.jsx';
-import { createProjectAction, createTaskAction, deleteProjectAction, deleteTaskAction, editProjectAction, editTaskAction, loginAction, signupAction, updateNickname } from './actions.jsx';
+import { createProjectAction, createTaskAction, deleteProjectAction, deleteTaskAction, editProjectAction, editTaskAction, inviteToProjectAction, leaveProjectAction, loginAction, signupAction, updateNickname } from './actions.jsx';
 import Landing from './routes/Landing.jsx';
 import Signup from './routes/Signup.jsx';
 import CreateProject from './routes/CreateProject.jsx';
@@ -110,13 +110,21 @@ const router = createBrowserRouter([
         action: deleteProjectAction
       },
       {
+        path:'/projects/:projectId/invite',
+        action: inviteToProjectAction,
+        loader: inviteUsersLoader
+      },
+      {
+        path:'/projects/:projectId/leave',
+        action: leaveProjectAction
+      },
+      {
         path: '/tasks/:taskId/edit',
         element: <EditTask />,
         action: editTaskAction,
         loader: editTaskLoader,
         shouldRevalidate: ({ actionResult }) => {
           if (actionResult) {
-            console.log('actionResult', actionResult)
             return false;
           }
           return true;

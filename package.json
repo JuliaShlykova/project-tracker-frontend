@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.1",
     "@popperjs/core": "^2.11.8",
     "axios": "^1.7.2",
     "browser-image-compression": "^2.0.2",

@@ -5,8 +5,8 @@ import fromISODateToLocale from '../utils/fromISODateToLocale';
 import { MdEdit, MdAddTask } from "react-icons/md";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { IoMdPersonAdd } from "react-icons/io";
+import { GiExitDoor } from "react-icons/gi";
 import { getUser } from '../services/localStorage';
-import { users } from '../../fakedDb';
 import ParticipantImg from '../components/ProjectPage/ParticipantImg';
 import ProjectTasksTable from '../components/ProjectPage/ProjectTasksTable';
 import classNames from 'classnames/bind';
@@ -45,26 +45,58 @@ const Project = () => {
       >
         <IoMdPersonAdd />
       </Button>
-      {(project.author._id===getUser()._id)
-      ?(<>
-          <Button variant='outline-warning' className='btn-without-text' title='edit' aria-label='edit' onClick={()=>setShowEdit(true)}><MdEdit /></Button>
-          <Form
-            method="post"
-            action="delete"
-            onSubmit={(event) => {
-              if (
-                !confirm(
-                  "Please confirm you want to delete this record."
-                )
-              ) {
-                event.preventDefault();
-              }
-            }}
+      {
+        (project.author._id===getUser()._id)
+        ?(
+            <>
+              <Button variant='outline-warning' className='btn-without-text' title='edit' aria-label='edit' onClick={()=>setShowEdit(true)}><MdEdit /></Button>
+              <Form
+                method="post"
+                action="delete"
+                id="delete-project"
+                onSubmit={(event) => {
+                  if (
+                    !confirm(
+                      "Please confirm you want to delete this project."
+                    )
+                  ) {
+                    event.preventDefault();
+                  }
+                }}
+                hidden
+              >
+              </Form>
+              <Button form="delete-project" type="submit" variant='outline-danger' className='btn-without-text' title='delete' aria-label='delete'><AiTwotoneDelete /></Button>
+            </>
+          )
+        :<><Form
+          method="post"
+          action="leave"
+          id="leave-project"
+          onSubmit={(event) => {
+            if (
+              !confirm(
+                "Please confirm you want to leave this project."
+              )
+            ) {
+              event.preventDefault();
+            }
+          }}
+          hidden
           >
-            <Button type="submit" variant='outline-danger' className='btn-without-text' title='delete' aria-label='delete'><AiTwotoneDelete /></Button>
           </Form>
-        </>)
-      :null}
+          <Button 
+            form="leave-project"
+            type="submit" 
+            variant='outline-danger' 
+            className='btn-without-text' 
+            title='leave project' 
+            aria-label='leave-project'
+          >
+            <GiExitDoor />
+          </Button>
+          </>
+      }
       </ButtonGroup>
       <ListGroup variant='flush' className='my-2'>
         <ListGroup.Item>
@@ -91,7 +123,7 @@ const Project = () => {
       <h2>Tasks and issues</h2>
       <ProjectTasksTable tasks={tasks} />
       {showEdit?<ModalProjectEdit showEdit={showEdit} setShowEdit={setShowEdit} project={updatedProject||project} />:null}
-      {showInvite?<ModalInvite />:null}
+      {showInvite?<ModalInvite showInvite={showInvite} setShowInvite={setShowInvite} />:null}
     </div>
     
   )

@@ -1,6 +1,6 @@
 // import { getAllProjects, getAllTasks, getProject, getProjects, getProjectsWithPossibleAssignees, getTasks, getUsers, getTaskInfo } from '../fakedDb';
 import { getTasks, getAllTasks, getTaskInfo } from './api/tasks';
-import { getProjects, getProjectsWithPossibleAssignees, getAllProjects, getProject } from './api/projects';
+import { getProjects, getProjectsWithPossibleAssignees, getAllProjects, getProject, getUsersToInvite } from './api/projects';
 import { getUsers } from './api/users';
 
 export async function dashboardLoader() {
@@ -82,4 +82,10 @@ export async function projectLoader({ params }) {
       statusText: err.message
     });
   }
+}
+
+export async function inviteUsersLoader({params}) {
+  console.log('invite users loader');  
+  const response = await getUsersToInvite(params.projectId);
+  return response.data;
 }

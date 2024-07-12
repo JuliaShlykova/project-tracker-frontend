@@ -9,10 +9,10 @@ export default function ErrorPage() {
 
   return (
     <div id="error-page" className="m-0 p-2">
-      <h1>{error.status}</h1>
+      <h1>{error.response?.status || error.status}</h1>
       <p>Sorry, an error has occurred:</p>
       <p>
-        <i>{error.statusText || error.message}</i>
+        <i>{error.response?.data || error.statusText || error.message}</i>
       </p>
     </div>
   );

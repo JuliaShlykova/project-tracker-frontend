@@ -4,7 +4,7 @@ import formDataToJSON from './utils/formDataToJSON';
 // import { createProject, createTask, deleteProject, deleteTask, updateProject, updateTask } from "../fakedDb";
 import { login, signup } from "./api/auth";
 import { createTask, updateTask, deleteTask } from "./api/tasks";
-import { createProject, updateProject, deleteProject } from "./api/projects";
+import { createProject, updateProject, deleteProject, leaveProject, inviteUsers } from "./api/projects";
 
 
 export async function loginAction({ request, params }) {
@@ -72,7 +72,6 @@ export async function createProjectAction({ request }) {
     }
     const data = formDataToJSON(formData);
     const response = await createProject(data);
-    console.log('response: ', response)
     return redirect('/projects/'+response.data._id);
   } catch(err) {
     if (err.response?.status===422) {
@@ -83,6 +82,13 @@ export async function createProjectAction({ request }) {
       statusText: err.response?.data?.error?.message||err.message
     });
   }
+}
+
+export async function inviteToProjectAction({ request, params }) {
+  let formData = await request.formData();
+  const data = formDataToJSON(formData);
+  const response = await inviteUsers(params.projectId, data);
+  return null;
 }
 
 export async function editProjectAction({ request, params }) {
@@ -97,6 +103,11 @@ export async function editProjectAction({ request, params }) {
 
 export async function deleteProjectAction({ params }) {
   await deleteProject(params.projectId);
+  return redirect('/projects');
+}
+
+export async function leaveProjectAction({ params }) {
+  await leaveProject(params.projectId);
   return redirect('/projects');
 }
 

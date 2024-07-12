@@ -29,7 +29,7 @@ const Projects = () => {
         </ToggleButton>
       </Col>
     </Row>
-    <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-3">
+    <Row xs={1} sm={2} lg={3} xl={4} xxl={5} className="g-3">
       {projects.map(project => {
         if (owned) {
           if (project.author._id===getUser()._id) {

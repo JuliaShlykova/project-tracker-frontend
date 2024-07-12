@@ -1,9 +1,11 @@
 import React, { useLayoutEffect, useReducer, useRef } from 'react'
-import { Outlet, ScrollRestoration, useLocation, useNavigation } from 'react-router-dom'
+import { Navigate, Outlet, ScrollRestoration, useLocation, useNavigation } from 'react-router-dom'
 import Navigation from '../components/Navigation/Index';
 import SidebarNav from '../components/Navigation/SidebarNav';
 import { Col, Container, Row, Stack } from 'react-bootstrap';
 import GlobalSpinner from '../components/GlobalSpinner';
+import { clearStorage, getToken, getUser } from '../services/localStorage';
+import removeTokenCookie from '../utils/removeCookies';
 
 
 const PrivateRoot = () => {
@@ -13,6 +15,13 @@ const PrivateRoot = () => {
   useLayoutEffect(() => {
     mRef.current.scrollTo({ top:0, left:0, behavior: "instant" });
   }, [location.pathname]);
+
+  if (!getToken()||!getUser()) {
+    clearStorage();
+    removeTokenCookie();
+    console.log('no token for private route');
+    return <Navigate to="/" />
+  }
   
   return (
     <>
