@@ -1,6 +1,7 @@
 # Issue tracker (frontend)
+
 ## Description
-The project is the backend part for Project tracker application. [Visit](https://project-tracker-psi.vercel.app/).
+The project is the frontend part for Project tracker application. [Visit](https://project-tracker-psi.vercel.app/).
 [Backend part](https://github.com/JuliaShlykova/project-tracker-backend).
 
 ## Assets
