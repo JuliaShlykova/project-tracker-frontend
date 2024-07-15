@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Modal, Table } from 'react-bootstrap';
-import fromISODateToLocale from '../../utils/fromISODateToLocale';
-import getTimeRemaining from '../../utils/getTimeRemaining';
 import { Link, useNavigate } from 'react-router-dom';
 import ModalTask from '../ModalTask';
-import classNames from 'classnames';
 import DoneIcon from './DoneIcon';
+import DateAndTimer from './DateAndTimer';
 
 const TasksTable = ({tasks=[]}) => {
   const [modalTask, setModalTask] = useState(null);
@@ -25,27 +23,13 @@ const TasksTable = ({tasks=[]}) => {
         </tr>
       </thead>
       <tbody>
-        {tasks.map((task) => {
-          const {total, minutes, hours, days} = getTimeRemaining(task.dueDate);
-          let dateStr = '';
-          if (total<=0) {
-            dateStr = '0 seconds left';
-          } else if (days) {
-            dateStr = `${days} days ${hours} hours left`;
-          } else {
-            dateStr = `${hours} hours ${minutes} minutes left`;
-          }
-          return (
+        {tasks.map((task) => (
             <tr onClick={() => { setModalTask(task) }} key={task._id} className='clickable verical-middle-row'>
               <td onClick={e=>{e.stopPropagation()}} className='p-0 border-end'>
                 <DoneIcon task={task} />
               </td>
               <td>{task.name}</td>
-              <td className={classNames({
-                'bg-danger-subtle': (!task.done)&&(total<=0), 
-                'bg-warning-subtle': (!task.done)&&(total>0)&&(total<24*60*60*1000)})}
-              >{fromISODateToLocale(task.dueDate)}</td>
-              <td className='d-none d-md-table-cell'>{dateStr}</td>
+              <DateAndTimer done={task.done} dueDate={task.dueDate} />
               <td onClick={e=>{e.stopPropagation()}}>
                 <Link to={'/projects/'+task.project._id}>{task.project.name}</Link>
               </td>
@@ -53,7 +37,7 @@ const TasksTable = ({tasks=[]}) => {
               <td className='d-none d-lg-table-cell'>{task._id}</td>
             </tr>
           )
-        })}
+        )}
       </tbody>
     </Table>
     {modalTask?<ModalTask modalTask={modalTask} setModalTask={setModalTask} />:null}
