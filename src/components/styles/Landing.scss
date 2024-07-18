@@ -1,0 +1,107 @@
+$accent-color: #1e3e47;
+
+#landing-page-container {
+  header {
+    border: 1px solid rgba(0,0,0,0.1);
+    width: 100%;
+    padding: 0.9rem 0;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    z-index: 9999;
+  }
+  nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    a {
+      $text-border-color: $accent-color;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: white;
+      text-shadow: 2px 2px 0 $text-border-color;
+      // text-shadow: 2px 0 0 $text-border-color, -2px 0 0 $text-border-color, 0 2px 0 $text-border-color, 0 -2px 0 $text-border-color, 1px 1px $text-border-color, -1px -1px 0 $text-border-color, 1px -1px 0 $text-border-color, -1px 1px 0 $text-border-color;
+      padding: 0 1.5rem;
+    }
+  }
+
+  main {
+    width: 100vw;
+    background-color: $accent-color;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+  }  
+
+  .bg-img {
+    width: 2800px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .mountain1 {
+    width: 1200px;
+    bottom: -500px;
+    right: -50px;
+    z-index: 1;
+  }
+
+  .text {
+    z-index: 2;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    pointer-events: auto;
+  }
+
+  .text h1 {
+    font-weight: 800;
+    font-size: 8rem;
+    pointer-events: auto;
+  }
+
+  .mountain2 {
+    width: 2000px;
+    bottom: -350px;
+    left: 0;
+    z-index: 3;
+  }
+
+  .trail {
+    width: 800px;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+  }
+
+  .vignette {
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(233, 207, 153, 0.3),rgba(0,0,0,0) 20%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.7));
+    pointer-events: none;
+  }
+
+  ::selection {
+    background-color: #1e3e4795;
+  }
+}
+
+.parallax {
+  pointer-events: none;
+  position: absolute;
+  transition: 0.45s transform cubic-bezier(.18,.51,.68,1.01);
+}

@@ -6,7 +6,7 @@ import mountain2 from '../assets/landing/mountain2.png';
 import trail from '../assets/landing/trail.png';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-
+import '../components/styles/Landing.scss';
 
 const Landing = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0});
@@ -80,7 +80,7 @@ const Landing = () => {
         className='parallax mountain2' 
         alt="" 
         style={{
-          transform: `translateX(calc(${mousePos.x>0?(-mousePos.x * 0.15):0}px)) translateY(calc(${-mousePos.y * 0.05}px))`
+          transform: `translateX(calc(${mousePos.x>0?(-mousePos.x * 0.01):0}px)) translateY(calc(${-mousePos.y * 0.05}px))`
         }} 
       />
       <img 
