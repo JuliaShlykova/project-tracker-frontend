@@ -111,7 +111,6 @@ option:not(#select-status>option):first-child {
   justify-content: center;
 }
 
-
 .participants-choice {
   max-height: 200px;
   overflow-y: auto;
@@ -154,7 +153,6 @@ tr.verical-middle-row>td {
 #landing-page-container {
   header {
     border: 1px solid rgba(0,0,0,0.1);
-    // background-color: rgba(0,0,0,0.05);
     width: 100%;
     padding: 0.9rem 0;
     position: absolute;
@@ -173,6 +171,8 @@ tr.verical-middle-row>td {
     a {
       text-decoration: none;
       text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
       color: white;
       text-shadow: 0 0 2px rgba(0,0,0,0.5);
       padding: 0 1.5rem;
