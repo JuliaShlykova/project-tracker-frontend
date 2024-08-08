@@ -25,7 +25,6 @@ $accent-color: #1e3e47;
       letter-spacing: 2px;
       color: white;
       text-shadow: 2px 2px 0 $text-border-color;
-      // text-shadow: 2px 0 0 $text-border-color, -2px 0 0 $text-border-color, 0 2px 0 $text-border-color, 0 -2px 0 $text-border-color, 1px 1px $text-border-color, -1px -1px 0 $text-border-color, 1px -1px 0 $text-border-color, -1px 1px 0 $text-border-color;
       padding: 0 1.5rem;
     }
   }
@@ -66,7 +65,7 @@ $accent-color: #1e3e47;
 
   .text h1 {
     font-weight: 800;
-    font-size: 8rem;
+    font-size: min(8rem, 15vw);
     pointer-events: auto;
   }
 
@@ -104,4 +103,28 @@ $accent-color: #1e3e47;
   pointer-events: none;
   position: absolute;
   transition: 0.45s transform cubic-bezier(.18,.51,.68,1.01);
+}
+
+@media (max-width: 700px) {
+  #landing-page-container {
+    .mountain1 {
+      width: 1200px;
+      bottom: -700px;
+      right: -50px;
+      z-index: 1;
+    }
+    .mountain2 {
+      width: 2000px;
+      bottom: -450px;
+      left: 0;
+      z-index: 3;
+    }
+  
+    .trail {
+      width: 800px;
+      right: 0;
+      bottom: -100px;
+      z-index: 4;
+    }
+  }
 }

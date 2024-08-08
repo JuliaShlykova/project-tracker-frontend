@@ -20,6 +20,7 @@ const Project = () => {
   const updatedProject = useActionData();
 
   let project = updatedProject||loadedProject;
+  console.log('authot', project.author._id, getUser()._id, project.author._id===getUser()._id);
 
   return (
     <div>

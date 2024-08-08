@@ -8,23 +8,45 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import '../components/styles/Landing.scss';
 
+const DURATION = 100;
+
+const throttle = (function() {
+  let timeout = undefined;
+  return function throttle(callback) {
+    if (timeout === undefined) {
+      callback();
+      timeout = setTimeout(() => {
+        timeout = undefined;
+      }, DURATION);
+    }
+  }
+})();
+
+function throttlify(callback) {
+  return function throttlified(event) {
+    throttle(() => {
+      callback(event);
+    });
+  }
+}
+
 const Landing = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0});
   const tl = useRef();
   const container = useRef();
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = throttlify((e) => {
       if (tl.current.isActive()) return;
       setMousePos({ x: e.clientX - window.innerWidth / 2, y: e.clientY - window.innerHeight / 2 });
-    };
+    });
 
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      window.removeEventListener('mouseMove', handleMouseMove);
+      window.removeEventListener('mousemove', handleMouseMove);
     }
-  }, [])
+  }, []);
 
   useGSAP(() => {
     let bgHeight = 2800/3200*2000;
@@ -64,7 +86,7 @@ const Landing = () => {
         className='parallax mountain1' 
         alt="" 
         style={{
-          transform: `translateX(calc(${mousePos.x<0?(-mousePos.x * 0.1):0}px)) translateY(calc(${-mousePos.y * 0.05}px))`
+          transform: `translateX(${mousePos.x<0?(-mousePos.x * 0.1):0}px) translateY(${-mousePos.y * 0.05}px)`
         }} 
       />
       <div 
@@ -80,7 +102,7 @@ const Landing = () => {
         className='parallax mountain2' 
         alt="" 
         style={{
-          transform: `translateX(calc(${mousePos.x>0?(-mousePos.x * 0.01):0}px)) translateY(calc(${-mousePos.y * 0.05}px))`
+          transform: `translateX(${mousePos.x>0?(-mousePos.x * 0.1):0}px) translateY(${-mousePos.y * 0.05}px)`
         }} 
       />
       <img 
@@ -88,7 +110,7 @@ const Landing = () => {
         className='trail parallax' 
         alt="" 
         style={{
-          transform: `translateX(${mousePos.x<0?(-mousePos.x * 0.2):0}px)`
+          transform: `translateX(${mousePos.x<0?(-mousePos.x * 0.2):0}px) translateY(${mousePos.y<0?-mousePos.y * 0.1:0}px)`
         }} 
       /> 
       <div className="vignette"></div>
